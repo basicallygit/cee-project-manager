@@ -38,15 +38,15 @@ VERSION = 1.0.0";
     }
     else if argv[1] == "init" || argv[1] == "new" {
         //default lang is C++, change to "c" for c to be default
-        let mut lang = "cpp";
+        let mut lang = "c";
 
         if argv[1] == "init" {
             if argc >= 4 {
                 if argv[2] == "-l" || argv[2] == "--lang" {
                     let langflag = &argv[3].to_lowercase();
-                    if  langflag == "c" {
-                        lang = "c";
-                    } else if langflag == "cpp" {} //ignore, default lang is already C++
+                    if  langflag == "cpp" {
+                        lang = "cpp";
+                    } else if langflag == "c" {} //ignore, default lang is already c
                     else {
                         println!("{} unknown/unsupported language: '{}'", error, langflag);
                         exit(0);
