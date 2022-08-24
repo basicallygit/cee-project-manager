@@ -15,16 +15,14 @@ case $choice in
             case $overwrite in 
                 [yY])
                     sudo cp ./target/release/cee /usr/bin/cee
-                    break;;
+                    exit;;
                 *)
-                    exit;
-                    break;;
+                    exit;;
             esac
         else
             sudo cp ./target/release/cee /usr/bin/cee
         fi
-        break;;
+        exit;;
     *)
-        exit;
-        break;;
+        exit;;
 esac
