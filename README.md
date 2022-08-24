@@ -41,3 +41,15 @@ Add target/release/cee.exe to your PATH environment variable on windows
 |---|---|
 |<kbd>--release/-r</kbd>|Compile with optimizations turned on (run/build only)|
 |<kbd>--lang/-l</kbd>|Specify language (default=c) (init/new only)|
+
+## cee.conf customization
+
+|Key|Description
+|---|---|
+|<kbd>C_COMPILER</kbd>|The C compiler to use|
+|<kbd>CPP_COMPILER</kbd>|The C++ compiler to use|
+|<kbd>RELEASE_FLAGS</kbd>|Flags for the compiler when in release mode|
+|<kbd>DEBUG_OUTPUT_FILE</kbd>|Output binary for non-release mode (debug)|
+|<kbd>RELEASE_OUTPUT_FILE</kbd>|Output binary for release mode|
+|<kbd>INPUT_SRC_FILE</kbd>|The main source file|
+|<kbd>VERSION</kbd>|Project version|
