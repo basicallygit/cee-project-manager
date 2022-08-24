@@ -37,7 +37,7 @@ VERSION = 1.0.0";
         println!("    --release/-r: compile with optimizations (run/build only)\n");
     }
     else if argv[1] == "init" || argv[1] == "new" {
-        //default lang is C++, change to "c" for c to be default
+        //default lang is C, change to "cpp" for C++ to be default
         let mut lang = "c";
 
         if argv[1] == "init" {
