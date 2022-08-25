@@ -15,12 +15,19 @@ $ ./setup.sh
 
 Windows
 
+```powershell
+$ git clone https://github.com/basicallygit/cee-project-manager
+$ cd cee-project-manager
+$ powershell.exe -ExecutionPolicy Bypass -File "install.ps1"
+```
+
+Manual
+
 ```bash
 $ git clone https://github.com/basicallygit/cee-project-manager
 $ cd cee-project-manager
 $ cargo build --release
 ```
-Add target/release/cee.exe to your PATH environment variable on windows
 
 
 ## Usage
