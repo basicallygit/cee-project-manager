@@ -172,7 +172,7 @@ VERSION = 1.0.0";
                 .arg("-o")
                 .arg(format!("{}.{}", config.RELEASE_OUT_FILE, binary_extension))
                 .args(releaseflags)
-                .output().ok().unwrap();
+                .output().ok().expect(format!("{} {}", error, style("building failed, do you have your compiler in your PATH variable?").color256(208)).as_str());
             // debug compiler output
             // println!("{:?}", output); 
         }
@@ -182,7 +182,7 @@ VERSION = 1.0.0";
                 .arg(format!("{}.{}", config.INPUT_SRC_FILE, config.LANG))
                 .arg("-o")
                 .arg(format!("{}.{}", config.DEBUG_OUT_FILE, binary_extension))
-                .output().ok().unwrap();
+                .output().ok().expect(format!("{} {}", error, style("building failed, do you have your compiler in your PATH variable?").color256(208)).as_str());
             // debug compiler output
             // println!("{:?}", output);
         }
