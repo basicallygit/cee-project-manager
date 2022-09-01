@@ -9,7 +9,7 @@ read choice
 
 case $PREFIX in
     *termux*)
-        BINPATH="$PREFIX/../bin/cee";
+        BINPATH="$PREFIX/bin/cee";
         SUDOCMD="";;
     *)
         BINPATH="/usr/bin/cee";
