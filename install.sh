@@ -6,21 +6,31 @@ fi
 cargo build --release
 echo "add cee binary to /usr/bin? (y/N)"
 read choice
+
+case $PREFIX in
+    *termux*)
+        BINPATH="$PREFIX/../bin/cee";
+        SUDOCMD="";;
+    *)
+        BINPATH="/usr/bin/cee";
+        SUDOCMD="sudo";;
+esac
+
 case $choice in 
     [yY])
-        if [ -e /usr/bin/cee ]
+        if [ -e $BINPATH ]
         then
-            echo "/usr/bin/cee exists, overwrite? (y/N)"
+            echo "$BINPATH exists, overwrite? (y/N)"
             read overwrite
             case $overwrite in 
                 [yY])
-                    sudo cp ./target/release/cee /usr/bin/cee
+                    eval "$SUDOCMD cp target/release/cee $BINPATH"
                     exit;;
                 *)
                     exit;;
             esac
         else
-            sudo cp ./target/release/cee /usr/bin/cee
+            eval "$SUDOCMD cp target/release/cee $BINPATH"
         fi
         exit;;
     *)
