@@ -1,6 +1,6 @@
 # cee project manager
 
-cee is a highly customizable project manager for C and C++ projects with extremely similar usage to cargo
+cee is a highly customizable project manager for C and C++ projects with extremely similar usage to [cargo](https://github.com/rust-lang/cargo/)
 
 ## Installation
 
