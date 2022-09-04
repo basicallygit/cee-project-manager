@@ -7,7 +7,7 @@ use std::io::Write;
 use std::process::{exit, Command};
 use console::style;
 
-
+//TODO: detect compiler warnings and print them out
 fn main() {
     let info = style("[info]").green();
     let error = style("[error]").red();
@@ -221,6 +221,9 @@ VERSION = 1.0.0";
             println!("{} purging ./bin ...", info);
             remove_dir_all("bin").unwrap();
             println!("{} Finished", info);
+        }
+        else {
+            println!("{} cee.conf not found, are you in the root of your project?", error);
         }
     }
     else {
