@@ -34,8 +34,8 @@ VERSION = 1.0.0";
         println!("    clean: purge the bin folder");
         println!("{}", style("flags:").green());
         println!("    --lang/-l: specify project lang (init/new only)");
-        println!("    --release/-r: compile with optimizations (run/build only)\n");
-        println!("    --compiler-output/-co: show the output of the compilation phase");
+        println!("    --release/-r: compile with optimizations (run/build only)");
+        println!("    --compiler-output/-co: show the output of the compilation phase\n");
     }
     else if argv[1] == "init" || argv[1] == "new" {
         //default lang is C, change to "cpp" for C++ to be default
