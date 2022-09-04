@@ -51,7 +51,7 @@ $ cargo build --release
 
 ## cee.conf customization
 
-|Key|Description
+|Key|Description|
 |---|---|
 |<kbd>C_COMPILER</kbd>|The C compiler to use|
 |<kbd>CPP_COMPILER</kbd>|The C++ compiler to use|
@@ -60,3 +60,14 @@ $ cargo build --release
 |<kbd>RELEASE_OUTPUT_FILE</kbd>|Output binary for release mode|
 |<kbd>INPUT_SRC_FILE</kbd>|The main source file|
 |<kbd>VERSION</kbd>|Project version|
+
+### tested on
+
+|OS|extra info|
+|Linux|no problems|
+|Windows|no problems|
+|FreeBSD|no problems|
+|OpenBSD|no problems|
+|Android|no problems|
+
+ios, macos, dragonfly/netBSD and other posix-compliant OS's will also more than likely work fine
