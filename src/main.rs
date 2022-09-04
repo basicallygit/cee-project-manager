@@ -174,7 +174,7 @@ VERSION = 1.0.0";
                 .args(releaseflags)
                 .output().ok().expect(format!("{} {}", error, style("building failed, do you have your compiler in your PATH variable?").color256(208)).as_str());
             // debug compiler output
-            // println!("{:?}", output); 
+            // println!("{:?}", _output); 
         }
         else {
             println!("{} {} {}.{} -o {}.{}", exec, compiler, config.INPUT_SRC_FILE, config.LANG, config.DEBUG_OUT_FILE, binary_extension);
@@ -184,7 +184,7 @@ VERSION = 1.0.0";
                 .arg(format!("{}.{}", config.DEBUG_OUT_FILE, binary_extension))
                 .output().ok().expect(format!("{} {}", error, style("building failed, do you have your compiler in your PATH variable?").color256(208)).as_str());
             // debug compiler output
-            // println!("{:?}", output);
+            // println!("{:?}", _output);
         }
         let comptype = if release { "release" } else { "debug" };
         println!("{} {} [{}]", style("Finished").green(), current_dir().unwrap().display(), comptype);
