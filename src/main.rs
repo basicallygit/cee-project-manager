@@ -183,7 +183,7 @@ VERSION = 1.0.0";
                 if !output.stderr.is_empty() { exit(0); }
             }
             if !output.stderr.is_empty() {
-                println!("error compiling project. check -co/--compiler-output to see errors");
+                println!("{} compilation error. check -co/--compiler-output to see errors", error);
                 exit(0);
             }
         }
@@ -202,7 +202,7 @@ VERSION = 1.0.0";
                 if !output.stderr.is_empty() { exit(0); }
             }
             if !output.stderr.is_empty() {
-                println!("error compiling project. check -co/--compiler-output to see errors");
+                println!("{} compilation error. check -co/--compiler-output to see errors", error);
                 exit(0);
             }
         }
