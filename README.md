@@ -39,7 +39,7 @@ $ cargo build --release
 |cee <kbd>new (project name)</kbd>|Creates a new project|
 |cee <kbd>init</kbd>|Initializes project in the pwd|
 |cee <kbd>build</kbd>|Build the project but dont run it|
-|cee <kbd>run</kbd>|Build and run the project|
+|cee <kbd>run</kbd><kbd> <args> </kbd>|Build and run the project (args will be passed to the program)|
 |cee <kbd>clean</kbd>|Purge the bin folder of all compiled files|
 
 ### flags
