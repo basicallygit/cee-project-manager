@@ -48,6 +48,7 @@ $ cargo build --release
 |---|---|
 |<kbd>--release/-r</kbd>|Compile with optimizations turned on (run/build only)|
 |<kbd>--lang/-l</kbd>|Specify language (default=c) (init/new only)|
+|<kbd>--compiler-output/-co</kbd>|Show exit code, stdout & stderr output of the compiler|
 
 ## cee.conf customization
 

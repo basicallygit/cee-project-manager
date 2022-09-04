@@ -4,7 +4,7 @@ mod configparser;
 use std::env::{args, consts, current_dir};
 use std::fs::{create_dir, metadata, File, remove_dir_all};
 use std::io::Write;
-use std::process::{exit, Command};
+use std::process::{exit, Command, Stdio};
 use console::style;
 
 //TODO: detect compiler warnings and print them out
@@ -35,6 +35,7 @@ VERSION = 1.0.0";
         println!("{}", style("flags:").green());
         println!("    --lang/-l: specify project lang (init/new only)");
         println!("    --release/-r: compile with optimizations (run/build only)\n");
+        println!("    --compiler-output/-co: show the output of the compilation phase");
     }
     else if argv[1] == "init" || argv[1] == "new" {
         //default lang is C, change to "cpp" for C++ to be default
@@ -167,24 +168,43 @@ VERSION = 1.0.0";
                 releaseflags.push(i);
             }
             println!("{} {} {}.{} -o {}.{} {}", exec, compiler, config.INPUT_SRC_FILE, config.LANG, config.RELEASE_OUT_FILE, binary_extension, config.RELEASE_FLAGS);
-            let _output = Command::new(&compiler)
+            let output = Command::new(&compiler)
                 .arg(format!("{}.{}", config.INPUT_SRC_FILE, config.LANG))
                 .arg("-o")
                 .arg(format!("{}.{}", config.RELEASE_OUT_FILE, binary_extension))
                 .args(releaseflags)
+                .stdout(Stdio::piped())
                 .output().ok().expect(format!("{} {}", error, style("building failed, do you have your compiler in your PATH variable?").color256(208)).as_str());
             // debug compiler output
-            // println!("{:?}", _output); 
+            if argv.contains(&"-co".to_string()) || argv.contains(&"--compiler-output".to_string()) {
+                println!("Compiler {}", output.status); //output.status already contains the string "exit code: n"
+                println!("stdout: {}", style(String::from_utf8(output.stdout).unwrap()).cyan());
+                println!("stderr: {}", style(String::from_utf8(output.stderr.clone()).unwrap()).color256(208));
+                if !output.stderr.is_empty() { exit(0); }
+            }
+            if !output.stderr.is_empty() {
+                println!("error compiling project. check -co/--compiler-output to see errors");
+                exit(0);
+            }
         }
         else {
             println!("{} {} {}.{} -o {}.{}", exec, compiler, config.INPUT_SRC_FILE, config.LANG, config.DEBUG_OUT_FILE, binary_extension);
-            let _output = Command::new(&compiler)
+            let output = Command::new(&compiler)
                 .arg(format!("{}.{}", config.INPUT_SRC_FILE, config.LANG))
                 .arg("-o")
                 .arg(format!("{}.{}", config.DEBUG_OUT_FILE, binary_extension))
                 .output().ok().expect(format!("{} {}", error, style("building failed, do you have your compiler in your PATH variable?").color256(208)).as_str());
             // debug compiler output
-            // println!("{:?}", _output);
+            if argv.contains(&"-co".to_string()) || argv.contains(&"--compiler-output".to_string()) {
+                println!("Compiler {}", output.status); //output.status already contains the string "exit code: n"
+                println!("stdout: {}", style(String::from_utf8(output.stdout).unwrap()).cyan());
+                println!("stderr: {}", style(String::from_utf8(output.stderr.clone()).unwrap()).color256(208));
+                if !output.stderr.is_empty() { exit(0); }
+            }
+            if !output.stderr.is_empty() {
+                println!("error compiling project. check -co/--compiler-output to see errors");
+                exit(0);
+            }
         }
         let comptype = if release { "release" } else { "debug" };
         println!("{} {} [{}]", style("Finished").green(), current_dir().unwrap().display(), comptype);
