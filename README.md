@@ -64,6 +64,7 @@ $ cargo build --release
 ### tested on
 
 |OS|extra info|
+|---|---|
 |Linux|no problems|
 |Windows|no problems|
 |FreeBSD|no problems|
