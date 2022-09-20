@@ -9,8 +9,8 @@ Unix-like
 ```bash
 $ git clone https://github.com/basicallygit/cee-project-manager
 $ cd cee-project-manager
-$ chmod +x setup.sh
-$ ./setup.sh
+$ chmod +x install.sh
+$ ./install.sh
 ```
 
 Windows
