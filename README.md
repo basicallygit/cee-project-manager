@@ -6,6 +6,7 @@ cee is a highly customizable project manager for C and C++ projects with extreme
 
 ### pre-compiled release:
 [download](https://github.com/basicallygit/cee-project-manager/releases/download/binary/cee)
+
 sha256sum: 757bc171730a5f3bfae7825bb91b6b27d924cf1c075374eebfb6e172260a4bbd
 
 Unix-like
