@@ -1,3 +1,4 @@
+#!/usr/bin/sh
 if ! command -v cargo &> /dev/null
 then
     echo "cargo not found. install rustup before building"
