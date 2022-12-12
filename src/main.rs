@@ -8,7 +8,6 @@ use std::process::{exit, Command, Stdio};
 use std::time::Instant;
 use console::style;
 
-//TODO: detect compiler warnings and print them out
 fn main() {
     let info = style("[info]").green();
     let error = style("[error]").red();
@@ -50,13 +49,13 @@ VERSION = 1.0.0";
                         lang = "cpp";
                     } else if langflag == "c" {} //ignore, default lang is already c
                     else {
-                        println!("{} unknown/unsupported language: '{}'", error, langflag);
+                        eprintln!("{} unknown/unsupported language: '{}'", error, langflag);
                         exit(0);
                     }
                 }
             }
             if metadata("cee.conf").is_ok() {
-                println!("{} project already found in current directory (cee.conf exists)", error);
+                eprintln!("{} project already found in current directory (cee.conf exists)", error);
                 exit(0);
             }
             else {
@@ -81,7 +80,7 @@ VERSION = 1.0.0";
         //"new"
         else {
             if argc < 3 {
-                println!("{} {} new <project name>", style("Usage:").green(), argv[0]);
+                eprintln!("{} {} new <project name>", style("Usage:").green(), argv[0]);
                 exit(0);
             }
             if argc >= 5 {
@@ -91,13 +90,13 @@ VERSION = 1.0.0";
                         lang = "cpp";
                     }
                     else {
-                        println!("{} unknown/unsupported language: '{}'", error, langflag);
+                        eprintln!("{} unknown/unsupported language: '{}'", error, langflag);
                         exit(0);
                     }
                 }
             }
             if metadata(&argv[2]).is_ok() {
-                println!("{} directory already exists: '{}'", error, argv[2]);
+                eprintln!("{} directory already exists: '{}'", error, argv[2]);
                 exit(0);
             }
             else {
@@ -125,7 +124,7 @@ VERSION = 1.0.0";
     }
     else if argv[1] == "run" || argv[1] == "build" {
         if !metadata("cee.conf").is_ok() {
-            println!("{} cee.conf not found, are you in the root of your project?", error);
+            eprintln!("{} cee.conf not found, are you in the root of your project?", error);
             exit(0);
         }
         let now = Instant::now();
@@ -185,7 +184,7 @@ VERSION = 1.0.0";
                 if !output.stderr.is_empty() { exit(0); }
             }
             if !output.stderr.is_empty() {
-                println!("{} compilation error. check -co/--compiler-output to see errors", error);
+                eprintln!("{} compilation error. check -co/--compiler-output to see errors", error);
                 exit(0);
             }
         }
@@ -204,7 +203,7 @@ VERSION = 1.0.0";
                 if !output.stderr.is_empty() { exit(0); }
             }
             if !output.stderr.is_empty() {
-                println!("{} compilation error. check -co/--compiler-output to see errors", error);
+                eprintln!("{} compilation error. check -co/--compiler-output to see errors", error);
                 exit(0);
             }
         }
@@ -237,7 +236,6 @@ VERSION = 1.0.0";
                     .unwrap();
             }
         }
-
     }
     else if argv[1] == "clean" {
         if metadata("cee.conf").is_ok() {
@@ -246,10 +244,10 @@ VERSION = 1.0.0";
             println!("{} Finished", info);
         }
         else {
-            println!("{} cee.conf not found, are you in the root of your project?", error);
+            eprintln!("{} cee.conf not found, are you in the root of your project?", error);
         }
     }
     else {
-        println!("{} Unknow command: '{}'", error, &argv[1]);
+        eprintln!("{} Unknow command: '{}'", error, &argv[1]);
     }
 }
