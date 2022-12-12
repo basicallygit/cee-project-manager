@@ -5,6 +5,7 @@ use std::env::{args, consts, current_dir};
 use std::fs::{create_dir, metadata, File, remove_dir_all};
 use std::io::Write;
 use std::process::{exit, Command, Stdio};
+use std::time::Instant;
 use console::style;
 
 //TODO: detect compiler warnings and print them out
@@ -124,9 +125,10 @@ VERSION = 1.0.0";
     }
     else if argv[1] == "run" || argv[1] == "build" {
         if !metadata("cee.conf").is_ok() {
-            println!("{} cee.conf found, are you in the root of your project?", error);
+            println!("{} cee.conf not found, are you in the root of your project?", error);
             exit(0);
         }
+        let now = Instant::now();
         //remake binary folders if cee clean was invoked
         if !metadata("bin").is_ok() {
             create_dir("bin").unwrap();
@@ -207,7 +209,7 @@ VERSION = 1.0.0";
             }
         }
         let comptype = if release { "release" } else { "debug" };
-        println!("{} {} [{}]", style("Finished").green(), current_dir().unwrap().display(), comptype);
+        println!("{} {} [{}] in {}s", style("Finished").green(), current_dir().unwrap().display(), comptype, now.elapsed().as_millis() as f32 / 1000_f32);
 
         if argv[1] == "run" {
             let mut outputbinary = if release { config.RELEASE_OUT_FILE } else { config.DEBUG_OUT_FILE };
@@ -235,6 +237,7 @@ VERSION = 1.0.0";
                     .unwrap();
             }
         }
+
     }
     else if argv[1] == "clean" {
         if metadata("cee.conf").is_ok() {
